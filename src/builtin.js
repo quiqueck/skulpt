@@ -32,6 +32,10 @@ Sk.builtin.range = function range (start, stop, step) {
 
     if (step === 0) {
         throw new Sk.builtin.ValueError("range() step argument must not be zero");
+    }   
+
+    if (Math.abs((start-stop)/ step) > 100000) {
+        throw new Sk.builtin.ValueError("ranges cannot enumerate more than 100000 elements");
     }
 
     if (step > 0) {
