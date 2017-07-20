@@ -37,6 +37,9 @@ Sk.builtin.list = function (L, canSuspend) {
                 } else {
                     v.push(i);
                     i = it.tp$iternext(canSuspend);
+                    if (v.length > 100000) {
+        throw new Sk.builtin.ValueError("ranges cannot enumerate more than 100000 elements");
+    }
                 }
             }
         })(it.tp$iternext(canSuspend));
